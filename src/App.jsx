@@ -8,6 +8,7 @@ const App = observer(() => {
         name: 'Home Page',
         value: 'home',
         image: 'icon-home.png',
+        optionDescription: 'This is optionDescription',
         optionInfo:
           "The icon on the left comes from the option's property 'image'. This text comes from the property 'optionInfo'."
       },
@@ -53,6 +54,7 @@ const App = observer(() => {
         name: 'Home Page',
         value: 'home',
         image: 'icon-home.png',
+        optionDescription: 'This is optionDescription',
         optionInfo:
           "The icon on the left comes from the option's property 'image'. This text comes from the property 'optionInfo'."
       },
@@ -98,6 +100,7 @@ const App = observer(() => {
         name: 'Dashboard',
         value: 'dashboard',
         image: 'icon-dashboard.png',
+        optionDescription: 'This is optionDescription',
         optionInfo:
           "The icon on the left comes from the option's property 'image'. This text comes from the property 'optionInfo'."
       },
@@ -105,6 +108,7 @@ const App = observer(() => {
         name: 'User Profile',
         value: 'user_profile',
         image: 'icon-profile.png',
+        optionDescription: 'This is optionDescription',
         disabled: true,
         disabledOptionInfo:
           "This option is disabled by it's property 'disabled'. The user can't deselect it. This text comes from it's property 'disabledOptionInfo'."
@@ -147,7 +151,7 @@ const App = observer(() => {
       state.multiselectValue = value;
     },
     multiselect2Options: [
-      { name: 'Dashboard', value: 'dashboard' },
+      { name: 'Dashboard', value: 'dashboard', optionDescription: 'This is optionDescription' },
       { name: 'User Profile', value: 'user_profile' },
       { name: 'Settings', value: 'settings' },
       { name: 'Notifications', value: 'notifications' },
@@ -175,8 +179,12 @@ const App = observer(() => {
       state.multiselect2Value = value;
     },
     multiselect3Options: [
-      { name: 'Dashboard', value: 'dashboard' },
-      { name: 'User Profile', value: 'user_profile' },
+      { name: 'Dashboard', value: 'dashboard', optionDescription: 'This is optionDescription' },
+      {
+        name: 'User Profile',
+        value: 'user_profile',
+        optionDescription: 'This is optionDescription'
+      },
       { name: 'Settings', value: 'settings' },
       { name: 'Notifications', value: 'notifications' },
       { name: 'Reports', value: 'reports' },
@@ -209,6 +217,7 @@ const App = observer(() => {
           value={state.singleselectValue}
           onChange={state.setSingleselectValue}
           infoMessage="This info message is shown because of the prop 'infoMessage'. 'infoMessage' can be a single string or an array of strings."
+          optionDescriptionSeparator=" • "
         />
         <Select
           label="Single select 2 label"
@@ -218,6 +227,7 @@ const App = observer(() => {
           onChange={state.setSingleselect2Value}
           showErrorState
           errorMessage="This error message is shown because of the prop 'showErrorState' and 'errorMessage'. 'errorMessage' can be a single string or an array of strings."
+          optionDescriptionSeparator=" ♫ "
         />
         <Select
           label="Multi select label"
@@ -225,6 +235,7 @@ const App = observer(() => {
           options={state.multiselectOptions}
           value={state.multiselectValue}
           onChange={state.setMultiselectValue}
+          optionDescriptionSeparator=" ✌️ "
         />
         <Select
           label="Multi select 2 label"
@@ -234,6 +245,7 @@ const App = observer(() => {
           onChange={state.setMultiselect2Value}
           disabled
           disabledInfo="Test for the 'disabled' prop. This text comes from the prop 'disabledInfo' of the Select component."
+          optionDescriptionSeparator=" ❆ "
         />
         <Select
           label="Multi select 3 label"
@@ -241,6 +253,7 @@ const App = observer(() => {
           options={state.multiselect3Options}
           value={state.multiselect3Value}
           onChange={state.setMultiselect3Value}
+          optionDescriptionSeparator=" ⇢ "
         />
       </div>
     </>

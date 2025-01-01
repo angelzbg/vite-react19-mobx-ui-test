@@ -4,6 +4,23 @@ import { useEffect } from 'react';
 import { generateRandomId } from '../../utils/utils';
 import { Tooltip } from 'react-tooltip';
 
+const highlightSearchKey = (name, searchKey) => {
+  if (!searchKey) return name;
+
+  const regex = new RegExp(`(${searchKey})`, 'gi');
+  const parts = name.split(regex);
+
+  return parts.map((part, index) =>
+    part.toLowerCase() === searchKey.toLowerCase() ? (
+      <span key={index} className="highlight-option-name">
+        {part}
+      </span>
+    ) : (
+      part
+    )
+  );
+};
+
 const Select = observer(
   ({
     options = [],
@@ -18,7 +35,8 @@ const Select = observer(
     isLoadingOptions = false,
     showErrorState = false,
     errorMessage = '',
-    infoMessage = ''
+    infoMessage = '',
+    optionDescriptionSeparator = ' '
   }) => {
     const state = useLocalObservable(() => ({
       options: options,
@@ -128,7 +146,11 @@ const Select = observer(
 
         if (state.searchKey) {
           const regex = new RegExp(state.searchKey, 'i');
-          optionsList = optionsList.filter((option) => regex.test(option.name));
+          optionsList = optionsList.filter(
+            (option) =>
+              regex.test(option.name) ||
+              (!!option.optionDescription && regex.test(option.optionDescription))
+          );
         }
 
         return optionsList;
@@ -231,7 +253,13 @@ const Select = observer(
                     <button
                       onClick={state.toggleOnlySelected}
                       disabled={state.disableShowOnlySelected}>
-                      {state.onlySelectedToggled ? <b>Show only selected</b> : 'Show only selected'}
+                      {state.onlySelectedToggled ? (
+                        <b>
+                          Show only selected{state.value.length ? ` (${state.value.length})` : ''}
+                        </b>
+                      ) : (
+                        `Show only selected${state.value.length ? ` (${state.value.length})` : ''}`
+                      )}
                     </button>
                   )}
                   <button
@@ -321,7 +349,15 @@ const Select = observer(
                           <img src={option.image} />
                         </div>
                       )}
-                      <div className="name">{option.name}</div>
+                      <div className="name">
+                        {highlightSearchKey(option.name, state.searchKey)}
+                        {option.optionDescription ? (
+                          <font className="option-description">
+                            {optionDescriptionSeparator}
+                            {highlightSearchKey(option.optionDescription, state.searchKey)}
+                          </font>
+                        ) : null}
+                      </div>
                       {!!option.optionInfo && (
                         <>
                           <div
