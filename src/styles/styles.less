@@ -1,0 +1,106 @@
+@import './inputs.less';
+
+/* Remove margin and padding for all elements */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set a consistent font and line-height */
+html {
+}
+
+/* Body styles */
+body {
+  height: 100dvh;
+  width: 100dvw;
+  font-family: sans-serif; /* Set your desired font family */
+  color: #333; /* Default text color */
+  background-color: #fff; /* Default background color */
+}
+
+#root {
+  height: 100dvh;
+  width: 100dvw;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+#root-input-portals {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Remove default styles for lists, links, tables, etc. */
+ol,
+ul,
+dl {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit; /* Inherit text color */
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+input,
+textarea {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Remove unwanted spacing below images */
+}
+
+/* Allow full-width form elements */
+input,
+button,
+select,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.website-header {
+  height: 60px;
+  background-color: antiquewhite;
+}
+
+.website-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  row-gap: 10px;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+    border-radius: 9px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #c4c4c4;
+    border-radius: 9px;
+    &:hover {
+      background-color: #d1d1d1;
+    }
+  }
+}
